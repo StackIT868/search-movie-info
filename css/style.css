@@ -1,0 +1,42 @@
+#movies img, #movie img{
+    width:100%;
+}
+
+/*remove height restriction when screen is small*/
+@media(min-width: 960px){
+    #movies .col-md-3 .well{
+        height:390px;
+    }
+
+    #movies .col-md-3 img{
+        height:240px;
+    }
+}
+
+
+/*footer*/
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height  */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    color: #302F3C;
+    text-align: center;
+}
+
+.rt{
+    text-align: left;
+}
+
+.lt{
+    text-align: right;
+}
