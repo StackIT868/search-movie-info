@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     /*create event for when form is submitted*/
     $('#searchForm').on('submit', function(e){
-        let searchText = $('#searchText').val();
+        var searchText = $('#searchText').val();
         getMovies(searchText);
         e.preventDefault();
     });
@@ -14,18 +14,18 @@ $(document).ready(function(){
         axios.get('http://www.omdbapi.com?s='+searchText)
             .then(function(response){
                 console.log(response);
-                let movies = response.data.Search;
-                let output = '';
+                var movies = response.data.Search;
+                var output = '';
                 $.each(movies, function(index, movie){
-                    output += `
-                              <div class="col-md-3">
+                    output +=
+                        `<div class="col-md-3">
                                     <div class="well text-center">
                                         <img src="${movie.Poster}">
                                         <h5>${movie.Title}</h5>
                                         <a onclick="movieSelected('${movie.imdbID}')" class="btn btn-primary" href="#">Movie Details</a>
                                     </div>
-                              </div>  
-                                `;
+                              </div>  `;
+
                 });
 
                 /*display movies*/
@@ -40,22 +40,22 @@ $(document).ready(function(){
     function movieSelected(id){
         sessionStorage.setItem('movieId', id);
 
-        window.location = '../include/movie.html';
+        window.location = 'include/movie.html';
 
         return false;
     }
 
     function getMovie(){
-        let movieId = sessionStorage.getItem('movieId');
+        var movieId = sessionStorage.getItem('movieId');
 
         axios.get('http://www.omdbapi.com?i='+movieId)
             .then(function(response){
                 console.log(response);
-                let movie = response.data;
+                var movie = response.data;
 
                 //output data
-                let output = `
-                                <div class="row">
+                let output =
+                                `<div class="row">
                                     <div class="col-md-4">
                                         <img src="${movie.Poster}" class="thumbnail">
                                     </div>
@@ -81,8 +81,8 @@ $(document).ready(function(){
                                         <a href="http://imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">View IMDB</a>
                                         <a href="../index.html" class="btn btn-default">Go Back to Search</a>
                                     </div>
-                                </div>
-                                `;
+                                </div>`;
+
 
                 $('#movie').html(output);
             })
